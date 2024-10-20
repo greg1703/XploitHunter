@@ -22,13 +22,79 @@ You can install the dependencies using:
 
 ```bash
 pip install -r requirements.txt
+```
 
-## Installation
-1. Clone the repository:
-git clone https://github.com/YOUR_USERNAME/XploitHunter.git
+Clone the repository:
 
-2. Navigate into the project directory:
+```bash
+git clone https://github.com/greg1703/XploitHunter.git
+```
+
+Navigate into the project directory:
+
+```bash
 cd XploitHunter
+```
 
-3. Install the required dependencies:
+Install the required dependencies:
+
+```bash
 pip install -r requirements.txt
+```
+
+## Usage
+
+To use the scanner, run the following command:
+
+```bash
+python XploitHunter.py
+```
+
+When prompted, enter the target URL that you want to scan (make sure you have authorization).
+
+Example:
+
+```bash
+Enter the target URL: http://example.com
+```
+
+## Vulnerabilities Detected
+
+- **SQL Injection**: Attempts to inject SQL payloads into URL parameters and checks for database errors.
+- **XSS**: Injects JavaScript payloads into HTML forms and checks if they are reflected.
+- **CSRF**: Checks if the forms on the website contain CSRF tokens.
+- **Insecure Headers**: Scans for missing security headers.
+- **Directory Traversal**: Attempts to access restricted directories using path traversal payloads.
+- **File Uploads**: Scans for file upload forms and attempts to upload a test file.
+
+## Example Output
+
+```
+Enter the target URL: http://example.com
+
+[+] Scanning for SQL Injection vulnerabilities...
+[!] Potential SQL Injection vulnerability found with payload: ' OR '1'='1
+
+[+] Scanning for XSS vulnerabilities...
+[!] Potential XSS vulnerability found in form action: http://example.com/login
+
+[+] Checking for CSRF protection...
+[!] CSRF token missing in form action: http://example.com/login
+
+[+] Scanning HTTP headers for security...
+[!] Missing security headers: Strict-Transport-Security, Content-Security-Policy
+
+[+] Scanning for directory traversal vulnerabilities...
+[!] Potential directory traversal vulnerability found with payload: ../../etc/passwd
+
+[+] Checking for insecure file uploads...
+[!] Insecure file upload detected at: http://example.com/upload
+```
+
+## Contribution
+
+Feel free to contribute by opening issues or submitting pull requests to improve the tool.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
